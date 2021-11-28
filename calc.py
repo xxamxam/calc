@@ -18,8 +18,9 @@ def is_number(s):
 def check(s):
     for i in s:
         if i not in T:
+            print("символ не из алфавита: ", s[i])
             return False
-        return True
+    return True
 
 def calc(string):
     # print(string)
@@ -46,9 +47,6 @@ def calc(string):
     if i == llen:   # S -> (S) | a
         if is_number(string):
             return float(string)
-        elif not(check(string)):
-            print("символ не из алфавита: ", string)
-            return None
         return calc(string[1:-1])
     
     calc_1 = calc(string[:i])
@@ -56,7 +54,7 @@ def calc(string):
     if calc_1 is None or calc_2 is None:
         return None
     elif (((i > 0) and string[i-1] in operators) or ((i < llen -1) and string[i+1] in operators)):
-        print("ошибка с операторами или символами в ", i, " позиции: ", string)
+        print("ошибка с операторами в ", i, " позиции: ", string)
         return None
     elif string[i] == "*":
         return calc_1 * calc_2
@@ -71,8 +69,11 @@ def calc(string):
     else:
         return calc_1 + calc_2
     
+            
+
 while True:
     ss = input().replace(' ', '')
-    rez = calc(ss)
-    if not rez is None:
-        print(rez)
+    if check(ss):
+        rez = calc(ss)
+        if not rez is None:
+            print(rez)
