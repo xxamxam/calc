@@ -71,8 +71,8 @@ def calc(string):
     else:
         return calc_1 + calc_2
     
-            
-
 while True:
     ss = input().replace(' ', '')
-    print (calc(ss))
+    rez = calc(ss)
+    if not rez is None:
+        print(rez)
