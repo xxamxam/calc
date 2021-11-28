@@ -55,6 +55,9 @@ def calc(string):
     if i == llen:   # S -> (S) | a
         if is_number(string):
             return float(string)
+        if(llen == 2):
+            print("пустая скобка")
+            return None
         return calc(string[1:-1])
     
     calc_1 = calc(string[:i])
