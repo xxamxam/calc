@@ -27,6 +27,7 @@ def calc(string):
     s_itog = 0
     i = 0
     f_operator = -1
+    s_operator = -1
     llen = len(string)
     if(llen == 0):
         return 0
@@ -35,14 +36,21 @@ def calc(string):
         if(string[i] in operators_1 and s_itog == 0):
             f_operator = i
         elif(string[i] in operators_2 and s_itog == 0):
-            break
+            s_operator = i
         elif string[i] == '(':
             s_itog +=1
         elif string[i] == ')':
             s_itog -=1
         i +=1
-    if f_operator != -1 and (i == llen or string[i] not in operators_2):
+    
+    if(s_itog != 0):
+        print("Незакрытая скобка: ", string)
+        return None
+
+    if f_operator != -1:
         i = f_operator
+    if s_operator != -1:
+        i = s_operator
 
     if i == llen:   # S -> (S) | a
         if is_number(string):
